@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "380685253445",
+    "project_id": "meshwar-5a3ab",
+    "storage_bucket": "meshwar-5a3ab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:380685253445:android:0a77cd5b724eeff94cdc2c",
+        "android_client_info": {
+          "package_name": "com.meshwar.meshwar"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTissihID1EvFsoE5vFlv9iymXKuCIohY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

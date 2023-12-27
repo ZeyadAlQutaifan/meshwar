@@ -1,0 +1,164 @@
+<resources>
+    <string name="app_name">Meshwar</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="user_name">User Name</string>
+    <string name="password">Password</string>
+    <string name="invalid_password_length">password should be more than 6 characters</string>
+    <string name="action_sign_out_button_text">Signout</string>
+    <string name="enable_location">Enable location</string>
+    <string name="enable_location_msg">enable location permissions to view weather data</string>
+    <string name="add_place">Add New Place</string>
+    <string name="title_activity_location_picker">LocationPickerActivity</string>
+    <string name="most_visited_places">Most Rated Places</string>
+    <string name="title">"Add Title "</string>
+    <string name="cat_navigationdrawer_button_show_content_description">Show navigation drawer</string>
+    <string name="cat_navigationdrawer_button_hide_content_description">Hide navigation drawer</string>
+    <string name="cat_navigationdrawer_header_image_content_description">Account icon</string>
+
+    <string-array name="simple_items">
+        <item>restaurant</item>
+        <item>gas_station</item>
+        <item>hotels</item>
+        <item>bank</item>
+        <item>beauty_salon</item>
+        <item>mosque</item>
+        <item>park</item>
+        <item>car_repair</item>
+        <item>school</item>
+        <item>stadium</item>
+        <item>gym</item>
+        <item>hospital</item>
+        <item>university</item>
+        <item>zoo</item>
+        <item>museum</item>
+        <item>airport</item>
+        <item>atm</item>
+        <item>cafe</item>
+        <item>doctor</item>
+        <item>embassy</item>
+        <item>library</item>
+    </string-array>
+    <string-array name="jordan_municipalities">
+        <item>Amman</item>
+        <item>Irbid</item>
+        <item>Zarqa</item>
+        <item>Jerash</item>
+        <item>Ajloun</item>
+        <item>Mafraq</item>
+        <item>Madaba</item>
+        <item>Karak</item>
+        <item>Tafilah</item>
+        <item>Maan</item>
+        <item>Aqaba</item>
+    </string-array>
+    <string name="mapbox_access_token">sk.eyJ1IjoiemV5YWRraCIsImEiOiJjbHFncmp2MjUwZDNzMmpvMHFobzFyN2M3In0.Cpw0s7GBrLHMrXg91Ia5xw</string>
+
+    <string name="cat_card_title">Cards</string>
+    <string name="cat_card_draggable_card">Draggable Card</string>
+    <string name="cat_card_selection_mode">Selectable Cards</string>
+    <string name="cat_card_selectable_item_title">Message</string>
+    <string name="cat_card_states">Card States</string>
+    <string name="cat_card_list" translatable="false">Card List With Drag-and-Drop</string>
+    <string name="cat_card_draggable_card_content">This is a draggable Card.</string>
+    <string name="cat_card_states_card_content">This demo shows the different states on a card.</string>
+    <string name="cat_card_state_hovered">Hovered</string>
+    <string name="cat_card_state_pressed">Pressed</string>
+    <string name="cat_card_state_none">None</string>
+    <string name="cat_card_checkable_card">This is a checkable Card</string>
+    <string name="cat_card_m1_section_title">Material 1 CardView</string>
+    <string name="cat_card_description">
+    Cards represent entry points into deeper levels of detail or navigation, such as an album in
+    Music or an upcoming vacation in Trips. They can be used in a grid, carousel, or feed to
+    contain groups of individual packaged information.
+  </string>
+    <string name="cat_card_spacing_desc">
+    Cards on mobile default to 8dp margins. layout_margin needs to be set directly on a View in its
+    layout and will not work when included as part of a style.
+  </string>
+    <string name="cat_card_clickable_desc">
+    Cards can be clickable.
+  </string>
+    <string name="cat_card_filled_style_desc">
+    This is a filled style card.
+  </string>
+    <string name="cat_card_elevated_style_desc">
+    This is an elevated style card.
+  </string>
+    <string name="cat_card_elevation_desc">
+        Cards use outlined styling with no elevation and with 8dp rounded corners.
+  </string>
+    <string name="cat_card_m1_desc">
+    CardView from the Support Library works side-by-side with MaterialCardView. These cards default
+    to Material 1 styles and support fewer style attributes than MaterialCardView.
+  </string>
+    <string name="cat_card_style_only_desc">
+    MaterialCardView uses the correct styles by default and makes use of additional style attributes
+    that are not provided in CardView. If you do not need to use the new style attributes, you can
+    use MaterialCardView in your layout, or apply a style tag to a CardView. We recommend using
+    the MaterialCardView class for the latest Material designs and maximum flexibility in your UI.
+  </string>
+    <string name="cat_card_select">Select a state</string>
+    <string name="cat_card_selectable_content">
+    Lorem ipsum dolor sit amet, nec no nominavi scaevola. Per et sint sapientem, nobis perpetua salutandi mei te. Quo tamquam probatus reprehendunt in. Eos esse purto eruditi ea. Enim tation persius ut sea, eos ad consul populo.
+    Ne eum solet altera. Cibo eligendi et est, electram theophrastus te vel eu.
+  </string>
+
+    <!-- Rich Media Demo Strings -->
+    <string name="cat_card_rich_media_demo">Rich Media Cards</string>
+    <string name="cat_card_rich_media_sample_1">Sample #1</string>
+    <string name="cat_card_rich_media_sample_2">Sample #2</string>
+    <string name="cat_card_rich_media_sample_3">Sample #3</string>
+    <string name="cat_card_rich_media_view_overline">Title goes here</string>
+    <string name="cat_card_rich_media_view_title">Title goes here</string>
+    <string name="cat_card_rich_media_view_subtitle">Subtitle goes here</string>
+    <string name="cat_card_rich_media_view_secondary_line_text">Secondary line text Lorem ipsum dolor sit amet, nec no nominavi scaevola. Per et sint sapientem, nobis perpetua salutandi mei te.</string>
+    <string name="cat_card_rich_media_logo_view_description">Card Logo</string>
+    <string name="cat_card_rich_media_image_view_description">Card Image</string>
+    <string name="cat_card_rich_media_rating_text">4.5 (413)</string>
+    <string name="cat_card_rich_media_rating_view_description">Card Rating</string>
+    <string name="cat_card_rich_media_chip_title_1">Item 1</string>
+    <string name="cat_card_rich_media_chip_title_2">Item 2</string>
+    <string name="cat_card_rich_media_chip_title_3">Item 3</string>
+    <string name="cat_card_rich_media_chip_title_4">Item 4</string>
+    <string name="cat_card_rich_media_action_1">Action 1</string>
+    <string name="cat_card_rich_media_action_2">Action 2</string>
+
+    <string name="cat_card_action_move_top_left" description="A description of an action that a user of an accessibility service can perform to move the card to the top left corner of the screen. [CHAR LIMIT=25]">Move to top left</string>
+
+
+    <string name="cat_card_action_move_up" description="A description of an action that a user of an accessibility service can perform to swap the card with the one above it. [CHAR LIMIT=25]">Move Up</string>
+    <string name="cat_card_action_move_down" description="A description of an action that a user of an accessibility service can perform to swap the card with the one below it. [CHAR LIMIT=25]">Move Down</string>
+    <string name="cat_card_action_move_top_right" description="A description of an action that a user of an accessibility service can perform to move the card to the top right corner of the screen. [CHAR LIMIT=25]">Move to top right</string>
+    <string name="cat_card_action_move_bottom_left" description="A description of an action that a user of an accessibility service can perform to move the card to the bottom left corner of the screen. [CHAR LIMIT=25]">Move to bottom left</string>
+    <string name="cat_card_action_move_bottom_right" description="A description of an action that a user of an accessibility service can perform to move the card to the bottom right corner of the screen. [CHAR LIMIT=25]">Move to bottom right</string>
+    <string name="cat_card_action_move_center" description="A description of an action that a user of an accessibility service can perform to move the card to the center of the screen. [CHAR LIMIT=25]">Move to center</string>
+    <string name="cat_card_action_select" description="A description of an action that a user of an accessibility service can perform to select the card. [CHAR LIMIT=25]">Select</string>
+    <string name="cat_card_action_deselect" description="A description of an action that a user of an accessibility service can perform to deselect the card. [CHAR LIMIT=25]">Deselect</string>
+
+    <string name="cat_card_dismissed" description="a transient text that appears on screen when a card is dismissed [CHAR LIMIT=30]">Card Dismissed</string>
+    <string name="cat_card_undo" description="A label in a button to dismiss the last action [CHAR LIMIT=15]">Undo</string>
+    <string name="cat_card_swipe_to_dismiss" description="A label in a button to dismiss the last action [CHAR LIMIT=30]">Swipe this card to dismiss it</string>
+    <string name="cat_card_swipe_dismiss" description="the title of a screen where you can swipe to dismiss a card [CHAR LIMIT=20]">Card Swipe Dismiss</string>
+    <string name="cat_transition_lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus dui nec risus. Maecenas non sodales nisi, vel dictum dolor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse blandit eleifend diam, vel rutrum tellus vulputate quis. Aliquam eget libero aliquet, imperdiet nisl a, ornare ex. Sed rhoncus est ut libero porta lobortis. Fusce in dictum tellus.\\n\\n\nSuspendisse interdum ornare ante. Aliquam nec cursus lorem. Morbi id magna felis. Vivamus egestas, est a condimentum egestas, turpis nisl iaculis ipsum, in dictum tellus dolor sed neque. Morbi tellus erat, dapibus ut sem a, iaculis tincidunt dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur et eros porttitor, ultricies urna vitae, molestie nibh. Phasellus at commodo eros, non aliquet metus. Sed maximus nisl nec dolor bibendum, vel congue leo egestas.\\n\\n\nSed interdum tortor nibh, in sagittis risus mollis quis. Curabitur mi odio, condimentum sit amet auctor at, mollis non turpis. Nullam pretium libero vestibulum, finibus orci vel, molestie quam. Fusce blandit tincidunt nulla, quis sollicitudin libero facilisis et. Integer interdum nunc ligula, et fermentum metus hendrerit id. Vestibulum lectus felis, dictum at lacinia sit amet, tristique id quam. Cras eu consequat dui. Suspendisse sodales nunc ligula, in lobortis sem porta sed. Integer id ultrices magna, in luctus elit. Sed a pellentesque est.\\n\\n\nAenean nunc velit, lacinia sed dolor sed, ultrices viverra nulla. Etiam a venenatis nibh. Morbi laoreet, tortor sed facilisis varius, nibh orci rhoncus nulla, id elementum leo dui non lorem. Nam mollis ipsum quis auctor varius. Quisque elementum eu libero sed commodo. In eros nisl, imperdiet vel imperdiet et, scelerisque a mauris. Pellentesque varius ex nunc, quis imperdiet eros placerat ac. Duis finibus orci et est auctor tincidunt. Sed non viverra ipsum. Nunc quis augue egestas, cursus lorem at, molestie sem. Morbi a consectetur ipsum, a placerat diam. Etiam vulputate dignissim convallis. Integer faucibus mauris sit amet finibus convallis.\\n\\n\nPhasellus in aliquet mi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In volutpat arcu ut felis sagittis, in finibus massa gravida. Pellentesque id tellus orci. Integer dictum, lorem sed efficitur ullamcorper, libero justo consectetur ipsum, in mollis nisl ex sed nisl. Donec maximus ullamcorper sodales. Praesent bibendum rhoncus tellus nec feugiat. In a ornare nulla. Donec rhoncus libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.</string>
+    <string name="login">Login</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="forgot_password">FORGET PASSWORD ?</string>
+    <string name="create_account">CREATE ACCOUNT</string>
+    <string name="forget_password">Forgot Password</string>
+    <string name="enter_full_name">Enter Full Name</string>
+    <string name="open_nav">Open</string>
+    <string name="close_nav">Close Nav</string>
+    <string name="write_comment">Write comment</string>
+</resources>
