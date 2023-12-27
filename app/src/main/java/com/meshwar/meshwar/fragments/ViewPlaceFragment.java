@@ -185,7 +185,6 @@ public class ViewPlaceFragment extends Fragment implements OnMapReadyCallback {
                     @Override
                     public void onComplete(@NonNull Task<DocumentReference> task) {
                         etComment.setText("");
-
                         loadComments(recyclerView);
 
                     }
