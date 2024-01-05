@@ -6,4 +6,65 @@
     android:layout_height="match_parent"
     tools:context=".PickImageActivity">
 
+    <ImageView
+        android:id="@+id/signup_back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="back"
+        android:padding="5dp"
+        android:src="@drawable/baseline_arrow_back_24"
+        android:transitionName="transition_back_arrow_btn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/signup_title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:text="@string/pick_image"
+        android:textAllCaps="true"
+        android:textAppearance="?attr/textAppearanceDisplayMedium"
+        android:textStyle="bold"
+        android:transitionName="transition_title_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signup_back_button" />
+
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/imgProfile"
+        android:layout_width="280dp"
+        android:layout_height="280dp"
+        android:layout_marginTop="24dp"
+        app:riv_border_color="@color/lavender"
+        app:riv_border_width="3dp"
+        android:src="@drawable/no_user_img"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signup_title_text"
+        app:riv_corner_radius="@dimen/radius_24" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/create_account"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:textAppearance="?attr/textAppearanceBodyMedium"
+        android:text="@string/pick_image"
+        app:layout_constraintEnd_toEndOf="@+id/imgProfile"
+        app:layout_constraintStart_toStartOf="@+id/imgProfile"
+        app:layout_constraintTop_toBottomOf="@+id/imgProfile" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

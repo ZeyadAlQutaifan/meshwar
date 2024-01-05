@@ -16,6 +16,7 @@ import com.meshwar.meshwar.databinding.ActivitySignUpBinding;
 import com.meshwar.meshwar.models.User;
 import com.meshwar.meshwar.util.FireAuth;
 import com.meshwar.meshwar.util.FireStore;
+import com.meshwar.meshwar.util.Global;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -71,11 +72,32 @@ public class SignUpActivity extends AppCompatActivity {
             return;
         }
 
+        if (!Global.isValidEmail(email)) {
+            binding.etEmail.setError("Invalid email");
+            binding.etEmail.requestFocus();
+            return;
+        }
+        if (password.length() <8) {
+            binding.etPassword.setError("Must be more that 8 ");
+            binding.etPassword.requestFocus();
+            return;
+        }
+        if (password.equals(confirmPassword)) {
+            binding.etConfirmPassword.setError("Must be more that 8 ");
+            binding.etConfirmPassword.requestFocus();
+            return;
+        }
+
+
         User.getInstance().setEmail(email);
         User.getInstance().setFullName(fullName);
         User.getInstance().setCreationDate(System.currentTimeMillis());
         startActivity(new Intent(this, PickImageActivity.class));
 
 
+    }
+
+    public void back(View view) {
+        finish();
     }
 }

@@ -162,4 +162,5 @@
     <string name="close_nav">Close Nav</string>
     <string name="write_comment">Write comment</string>
     <string name="contact">Contact</string>
+    <string name="pick_image">Pick Profile Image</string>
 </resources>
