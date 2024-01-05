@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -19,6 +20,7 @@ import android.view.View;
 import android.widget.Toast;
 import android.window.OnBackAnimationCallback;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.motion.MaterialSideContainerBackHelper;
 import com.google.android.material.navigation.NavigationView;
 import com.meshwar.meshwar.databinding.ActivityMainBinding;
@@ -27,9 +29,8 @@ import com.meshwar.meshwar.fragments.MainFragment;
 import com.meshwar.meshwar.fragments.NearbyFragment;
 import com.meshwar.meshwar.fragments.ProfileFragment;
 
-public class MainActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener{
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     ActivityMainBinding binding;
-
 
 
     @Override
@@ -39,22 +40,22 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         setContentView(binding.getRoot());
         Toolbar toolbar = findViewById(R.id.toolbar); //Ignore red line errors
         setSupportActionBar(toolbar);
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+
+        binding.navView.setNavigationItemSelectedListener(this);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, binding.drawerLayout, toolbar, R.string.open_nav,
                 R.string.close_nav);
         binding.drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         replaceFragment(new MainFragment());
-        binding.floatingActionButton.setOnClickListener(v-> {
-          startActivity(new Intent(MainActivity.this , AddPlaceActivity.class));
+        binding.floatingActionButton.setOnClickListener(v -> {
+            startActivity(new Intent(MainActivity.this, AddPlaceActivity.class));
         });
         binding.bottomNavigation.setOnItemSelectedListener(item -> {
-              binding.floatingActionButton.show();
-            if(item.getItemId() == R.id.navigation_home){
+            binding.floatingActionButton.show();
+            if (item.getItemId() == R.id.navigation_home) {
                 replaceFragment(new MainFragment());
                 return true;
-            }else if(item.getItemId() == R.id.navigation_nearby){
+            } else if (item.getItemId() == R.id.navigation_nearby) {
                 replaceFragment(new NearbyFragment());
                 return true;
             } else if (item.getItemId() == R.id.navigation_fav) {
@@ -66,7 +67,10 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
             }
             return false;
         });
+
     }
+
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.nav_home) {
@@ -76,14 +80,28 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         } else if (item.getItemId() == R.id.nav_share) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_view_tag, new NearbyFragment()).commit();
         } else if (item.getItemId() == R.id.nav_about) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_view_tag, new ProfileFragment()).commit();
+            startActivity(new Intent(MainActivity.this , AboutActivity.class));
         } else if (item.getItemId() == R.id.nav_logout) {
-            Toast.makeText(this, "Logout!", Toast.LENGTH_SHORT).show();
+            new MaterialAlertDialogBuilder(this)
+                    .setTitle("Log out")
+                    .setNegativeButton("No, stay", null)
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent loginIntent = new Intent(MainActivity.this, LoginActivity.class);
+                            loginIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(loginIntent);
+                            finishAndRemoveTask();
+                        }
+                    })
+                    .setCancelable(false)
+                    .show();
         }
 
         binding.drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
+
     private void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -93,7 +111,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 
     @Override
     public void onBackPressed() {
-        if ( binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+        if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
             binding.drawerLayout.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();

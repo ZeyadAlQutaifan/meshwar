@@ -3,7 +3,6 @@ package com.meshwar.meshwar.fragments;
 import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -25,7 +24,6 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -42,8 +40,7 @@ import com.meshwar.meshwar.models.Place;
 import com.meshwar.meshwar.util.FireAuth;
 import com.meshwar.meshwar.util.FireStore;
 
-import org.checkerframework.checker.units.qual.C;
-
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,6 +52,7 @@ public class ViewPlaceFragment extends Fragment implements OnMapReadyCallback {
 
     FragmentViewPlaceBinding binding;
     private static final String ARG_PLACE_ID = "param1";
+    private boolean isFavorite = false;
 
     private String placeId;
 
@@ -86,12 +84,13 @@ public class ViewPlaceFragment extends Fragment implements OnMapReadyCallback {
         binding.mapView2.getMapAsync(this);
         binding.btnLike.setCheckable(true);
 
-        binding.txtCommentCount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showDialog();
-            }
-        });
+        initCommentButton();
+        initLikeButton();
+        getPlaceData();
+        return binding.getRoot();
+    }
+
+    private void getPlaceData() {
         FireStore.getPLace(placeId).addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -104,31 +103,91 @@ public class ViewPlaceFragment extends Fragment implements OnMapReadyCallback {
                 binding.txtTitle.setText(place.getTitle());
                 binding.txtDescription.setText(place.getDescription());
                 int commentCount = 0;
-                FireStore.getPlaceComments(placeId).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                getPlaceCommentCount();
+                findIfFavorite() ;
+                // Set Location on the map
+                updateLocation(new LatLng(place.getLat(), place.getLng()), 18);
+            }
+        });
+    }
+
+    private void findIfFavorite() {
+        FireStore.getIfFavorite(placeId)
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            binding.txtCommentCount.setText(task.getResult().getDocuments().size());
+                        if (task.isSuccessful()){
+                            QuerySnapshot queryDocumentSnapshots = task.getResult();
+                            if(queryDocumentSnapshots.getDocuments().size()>0){
+                                isFavorite = true ;
+                                binding.btnLike.setChecked(true);
+                            }else {
+                                isFavorite = false;
+                                binding.btnLike.setChecked(false);
+                            }
+
+                        }else{
 
                         }
                     }
                 });
-                // Set Location on the map
-                updateLocation(new LatLng(place.getLat(), place.getLng()) , 18);
+    }
+
+    private void getPlaceCommentCount() {
+        FireStore.getPlaceComments(placeId).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    binding.txtCommentCount.setText(task.getResult().getDocuments().size());
+                }
             }
         });
-        return binding.getRoot();
     }
+
+    private void initCommentButton() {
+        binding.txtCommentCount.setOnClickListener(v -> showDialog());
+
+    }
+
+    private void initLikeButton() {
+        binding.btnLike.setOnClickListener(v -> {
+            isFavorite = !isFavorite;
+            binding.btnLike.setEnabled(false);
+            // Update the FAB icon based on the state
+            if (isFavorite) {
+                FireStore.addPlaceToFav(placeId)
+                        .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                            @Override
+                            public void onComplete(@NonNull Task<DocumentReference> task) {
+                                Toast.makeText(getActivity(), "Added To Favorites", Toast.LENGTH_SHORT).show();
+                                binding.btnLike.setEnabled(true);
+                            }
+                        });
+            } else {
+                FireStore.removePlaceFromFav(placeId)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                Toast.makeText(getActivity(), "Removed From Favorites", Toast.LENGTH_SHORT).show();
+                                binding.btnLike.setEnabled(true);
+                            }
+                        });
+            }
+        });
+    }
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
     }
+
     private void updateLocation(LatLng location, float zoomLevel) {
         if (mMap != null) {
             mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
             mMap.animateCamera(CameraUpdateFactory.zoomTo(zoomLevel));
         }
     }
+
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);

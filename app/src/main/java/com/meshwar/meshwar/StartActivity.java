@@ -8,23 +8,23 @@ import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-public class startpage extends AppCompatActivity {
+public class StartActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_startpage);
+        setContentView(R.layout.activity_start_page);
     }
 
     public void start(View view) {
         if(FirebaseAuth.getInstance().getCurrentUser() != null){
-            Intent intent=new Intent(startpage.this , MainActivity.class );
+            Intent intent=new Intent(StartActivity.this , MainActivity.class );
 
 // intent to main
 
         }else{
-            Intent intent=new Intent(startpage.this , LoginActivity.class);
-// intent to login 
+            Intent intent=new Intent(StartActivity.this , LoginActivity.class);
+
         }
         finish();
     }

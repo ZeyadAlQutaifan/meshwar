@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/materialCardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/mtrl_card_spacing"
+        android:clickable="true"
+        android:focusable="true"
+        android:minHeight="@dimen/cat_card_rich_media_demo_min_height"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/cat_card_double_spacing"
+                android:paddingBottom="@dimen/cat_card_single_spacing">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/cat_card_single_spacing"
+                    android:layout_weight="1.0"
+                    android:orientation="vertical"
+                    android:paddingTop="@dimen/cat_card_single_spacing">
+
+                    <TextView
+                        android:id="@+id/tvTitle"
+                        style="?attr/textAppearanceHeadline5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cat_card_rich_media_view_title" />
+
+                    <TextView
+                        android:id="@+id/tvContent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/cat_card_single_spacing"
+                        android:ellipsize="end"
+                        android:maxLines="2"
+                        android:text="@string/cat_card_rich_media_view_secondary_line_text" />
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/imgPlace"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginLeft="@dimen/cat_card_single_spacing"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/cat_card_rich_media_image_view_description"
+                    android:src="@drawable/headerbkg"
+                    app:backgroundTint="@color/material_on_surface_emphasis_medium"
+                    app:backgroundTintMode="add" />
+            </LinearLayout>
+
+            <com.google.android.material.chip.ChipGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_8">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipCity"
+                    style="@style/Widget.Material3.Chip.Assist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="city"
+                    app:chipIcon="@drawable/ic_location"
+                    app:chipIconTint="@color/material_dynamic_secondary50" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/views"
+                    style="@style/Widget.Material3.Chip.Assist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="(10) views"
+                    app:chipIcon="@drawable/baseline_remove_red_eye_24"
+                    app:chipIconTint="@color/material_dynamic_secondary50" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/distance"
+                    style="@style/Widget.Material3.Chip.Assist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="(3.67) KM"
+                    app:chipIcon="@drawable/baseline_navigation_24"
+                    app:chipIconTint="@color/material_dynamic_secondary50" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/weather"
+                    style="@style/Widget.Material3.Chip.Assist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="(24) C"
+                    app:chipIcon="@drawable/baseline_wb_sunny_24"
+                    app:chipIconTint="@color/material_dynamic_secondary50" />
+
+
+            </com.google.android.material.chip.ChipGroup>
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -33,10 +33,12 @@ public class MostViewsRecyclerAdapter  extends FirestoreRecyclerAdapter<Place, M
     protected void onBindViewHolder(@NonNull MostViewHolder holder, int position, @NonNull Place model) {
         holder.txtTitle.setText(Global.getNullString(model.getTitle()).length() > 22 ? Global.getNullString(model.getTitle()).substring(0, 20) + ".." : Global.getNullString(model.getTitle()));
         holder.txtCity.setText(model.getCity());
-        Glide.with(holder.itemView.getContext())
-                .load(Global.getPlaceImageNotFound(model.getImages().get(0)))
-                .centerCrop()
-                .into(holder.imageView);
+        if (model.getImages().size() > 0) {
+            Glide.with(holder.itemView.getContext())
+                    .load(Global.getPlaceImageNotFound(model.getImages().get(0)))
+                    .centerCrop()
+                    .into(holder.imageView);
+        }
 
         holder.container.setOnClickListener(new View.OnClickListener() {
             @Override

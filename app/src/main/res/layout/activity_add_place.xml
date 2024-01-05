@@ -105,7 +105,6 @@
                         android:layout_height="wrap_content"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
                         >
-
                         <com.google.android.material.textfield.MaterialAutoCompleteTextView
                             android:id="@+id/etCity"
                             android:layout_width="match_parent"
