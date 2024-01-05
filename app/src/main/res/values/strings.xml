@@ -161,4 +161,5 @@
     <string name="open_nav">Open</string>
     <string name="close_nav">Close Nav</string>
     <string name="write_comment">Write comment</string>
+    <string name="contact">Contact</string>
 </resources>

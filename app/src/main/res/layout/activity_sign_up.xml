@@ -134,6 +134,7 @@
                 app:startIconDrawable="@drawable/baseline_lock_24">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etConfirmPassword"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="textPassword"
@@ -154,7 +155,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:elevation="5dp"
-            android:onClick="callNextSigupScreen"
+            android:onClick="continueSignup"
             android:paddingVertical="@dimen/margin_16"
             android:text="@string/create_account"
             android:textColor="@color/white"

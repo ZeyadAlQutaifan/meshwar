@@ -1,16 +1,13 @@
 package com.meshwar.meshwar;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
@@ -45,7 +42,7 @@ public class TestActivity2 extends AppCompatActivity implements NavigationView.O
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.nav_home) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_view_tag, new MainFragment()).commit();
-        } else if (item.getItemId() == R.id.nav_settings) {
+        } else if (item.getItemId() == R.id.nav_profile) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_view_tag, new FavorateFragment()).commit();
         } else if (item.getItemId() == R.id.nav_share) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_view_tag, new NearbyFragment()).commit();

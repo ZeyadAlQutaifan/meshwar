@@ -19,7 +19,8 @@ import com.meshwar.meshwar.util.FireStore;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    ActivitySignUpBinding binding ;
+    ActivitySignUpBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,23 +29,53 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     public void callNextSigupScreen(View view) {
-        String fullName = binding.etFullName.getText().toString().trim() ;
-        String email = binding.etEmail.getText().toString().trim() ;
-        String password = binding.etPassword.getText().toString() ;
-        FireAuth.createUser(email , password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+        String fullName = binding.etFullName.getText().toString().trim();
+        String email = binding.etEmail.getText().toString().trim();
+        String password = binding.etPassword.getText().toString();
+        String confirmPassword = binding.etConfirmPassword.getText().toString();
+        FireAuth.createUser(email, password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
             @Override
             public void onSuccess(AuthResult authResult) {
-                User newUser = new User() ;
+                User newUser = User.getInstance();
                 newUser.setEmail(email);
                 newUser.setFullName(fullName);
                 newUser.setCreationDate(System.currentTimeMillis());
-                FireStore.writeUser(authResult.getUser().getUid() ,newUser ).addOnCompleteListener(new OnCompleteListener<Void>() {
+                FireStore.writeUser(authResult.getUser().getUid(), newUser).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        startActivity(new Intent(SignUpActivity.this , MainActivity.class));
+                        startActivity(new Intent(SignUpActivity.this, MainActivity.class));
                     }
                 });
             }
         });
+    }
+
+    public void continueSignup(View view) {
+        String fullName = binding.etFullName.getText().toString().trim();
+        String email = binding.etEmail.getText().toString().trim();
+        String password = binding.etPassword.getText().toString();
+        String confirmPassword = binding.etConfirmPassword.getText().toString();
+        if (fullName.isEmpty()) {
+            binding.etFullName.setError("Required");
+            binding.etFullName.requestFocus();
+            return;
+        }
+        if (email.isEmpty()) {
+            binding.etEmail.setError("Required");
+            binding.etEmail.requestFocus();
+            return;
+        }
+        if (password.isEmpty()) {
+            binding.etEmail.setError("Required");
+            binding.etEmail.requestFocus();
+            return;
+        }
+
+        User.getInstance().setEmail(email);
+        User.getInstance().setFullName(fullName);
+        User.getInstance().setCreationDate(System.currentTimeMillis());
+        startActivity(new Intent(this, PickImageActivity.class));
+
+
     }
 }
