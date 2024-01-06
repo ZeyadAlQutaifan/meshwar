@@ -171,4 +171,5 @@
     <string name="gym">GYM</string>
     <string name="university">University</string>
     <string name="latest_added_places">Lates Added Places</string>
+    <string name="places">Places</string>
 </resources>

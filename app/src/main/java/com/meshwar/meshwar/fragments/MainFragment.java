@@ -83,16 +83,30 @@ public class MainFragment extends Fragment {
         getLocation();
     }
 
+    /**
+     * Retrieves the current location using a GPSTracker.
+     * If location retrieval is successful, updates the latitude and longitude variables,
+     * sets constant reference values, and displays the current weather status.
+     * If location retrieval is unsuccessful, prompts the user to enable location services.
+     */
     private void getLocation() {
+        // Create an instance of GPSTracker to obtain the current location
         GPSTracker tracker = new GPSTracker(getActivity());
+
+        // Check if location retrieval is possible
         if (!tracker.canGetLocation()) {
+            // If not, prompt the user to enable location services
             tracker.showSettingsAlert();
         } else {
+            // If location retrieval is successful, get the latitude and longitude
             latitude = tracker.getLatitude();
             longitude = tracker.getLongitude();
 
+            // Update constant reference values with the obtained location
             Constant.LATITUDE = latitude;
             Constant.LONGITUDE = longitude;
+
+            // Display the current weather status based on the obtained location
             showWeatherStatus();
         }
     }

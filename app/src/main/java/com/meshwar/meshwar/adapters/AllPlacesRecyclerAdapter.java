@@ -113,9 +113,6 @@ public class AllPlacesRecyclerAdapter extends FirestoreRecyclerAdapter<Place, Al
 
     }
 
-    private void showWeatherStatus(double longitude, double latitude, TextView textView) {
-
-    }
 
     @NonNull
     @Override
@@ -145,7 +142,7 @@ public class AllPlacesRecyclerAdapter extends FirestoreRecyclerAdapter<Place, Al
             rates = itemView.findViewById(R.id.rates);
             rate = itemView.findViewById(R.id.rate);
             chipCity = itemView.findViewById(R.id.chipCity);
-            favorites = itemView.findViewById(R.id.views);
+            favorites = itemView.findViewById(R.id.favorites);
             distance = itemView.findViewById(R.id.distance);
             weather = itemView.findViewById(R.id.weather);
             materialCardView = itemView.findViewById(R.id.materialCardView);

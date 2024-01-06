@@ -158,7 +158,7 @@ public class FavoritePlaceRecyclerAdapter extends FirestoreRecyclerAdapter<Favor
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvContent = itemView.findViewById(R.id.tvContent);
             chipCity = itemView.findViewById(R.id.chipCity);
-            favorites = itemView.findViewById(R.id.views);
+            favorites = itemView.findViewById(R.id.favorites);
             distance = itemView.findViewById(R.id.distance);
             weather = itemView.findViewById(R.id.weather);
             materialCardView = itemView.findViewById(R.id.materialCardView);

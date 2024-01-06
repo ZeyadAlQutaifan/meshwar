@@ -52,21 +52,10 @@ public class AddPlaceActivity extends AppCompatActivity {
         binding = ActivityAddPlaceBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         initPickImagesRecyclerView();
-
-    }
-    private void initPickImagesRecyclerView() {
-
-        recyclerImageFromGalleryAdapter = new RecyclerImageFromGalleryAdapter(chosenImagesUriList);
-        binding.recyclerImagesFromGallery.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        binding.recyclerImagesFromGallery.setAdapter(recyclerImageFromGalleryAdapter);
-
-        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, READ_PERMISSION);
-        }
         String[] municipalities = getResources().getStringArray(R.array.jordan_municipalities);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.list_item, municipalities);
         binding.etCity.setAdapter(adapter);
+
         binding.fabAddImages.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
             intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
@@ -74,6 +63,8 @@ public class AddPlaceActivity extends AppCompatActivity {
 
             pickMedia.launch(intent);
         });
+
+
         binding.btnPickLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,6 +79,8 @@ public class AddPlaceActivity extends AppCompatActivity {
                 }
             }
         });
+
+
         binding.btnAddPlace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -126,6 +119,22 @@ public class AddPlaceActivity extends AppCompatActivity {
 
             }
         });
+
+    }
+    private void initPickImagesRecyclerView() {
+
+        recyclerImageFromGalleryAdapter = new RecyclerImageFromGalleryAdapter(chosenImagesUriList);
+        binding.recyclerImagesFromGallery.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        binding.recyclerImagesFromGallery.setAdapter(recyclerImageFromGalleryAdapter);
+
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, READ_PERMISSION);
+        }
+
+
+
+
     }
     private void finishAndGoBackToManin() {
        finish();
@@ -160,15 +169,5 @@ public class AddPlaceActivity extends AppCompatActivity {
                 }
             });
 
-    private final ActivityResultLauncher<String> activityResultLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(), new ActivityResultCallback<Boolean>() {
-        @Override
-        public void onActivityResult(Boolean result) {
-            if (result) {
-
-            } else {
-
-            }
-        }
-    });
 
 }

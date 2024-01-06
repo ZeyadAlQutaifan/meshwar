@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -16,6 +17,8 @@ import com.google.android.material.card.MaterialCardView;
 import com.meshwar.meshwar.R;
 import com.meshwar.meshwar.models.Place;
 import com.meshwar.meshwar.util.Global;
+
+import org.w3c.dom.Text;
 
 public class LatestRecyclerAdapter extends FirestoreRecyclerAdapter<Place, LatestRecyclerAdapter.MostViewHolder> {
 
@@ -27,6 +30,7 @@ public class LatestRecyclerAdapter extends FirestoreRecyclerAdapter<Place, Lates
     protected void onBindViewHolder(@NonNull MostViewHolder holder, int position, @NonNull Place model) {
         holder.txtTitle.setText(Global.getNullString(model.getTitle()).length() > 22 ? Global.getNullString(model.getTitle()).substring(0, 20) + ".." : Global.getNullString(model.getTitle()));
         holder.txtCity.setText(model.getCity());
+        holder.txtDescription.setText(model.getDescription());
         if (model.getImages().size() > 0) {
             Glide.with(holder.itemView.getContext())
                     .load(Global.getPlaceImageNotFound(model.getImages().get(0)))
@@ -60,9 +64,10 @@ public class LatestRecyclerAdapter extends FirestoreRecyclerAdapter<Place, Lates
         TextView txtTitle;
         TextView txtCity;
 
+        TextView txtDescription ;
         ImageView imageView;
 
-        MaterialCardView container;
+        ConstraintLayout container;
 
         public MostViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -70,6 +75,7 @@ public class LatestRecyclerAdapter extends FirestoreRecyclerAdapter<Place, Lates
             imageView = itemView.findViewById(R.id.imgPlace);
             container = itemView.findViewById(R.id.card);
             txtCity = itemView.findViewById(R.id.tvCity);
+            txtDescription = itemView.findViewById(R.id.txtDescription);
         }
     }
 }
