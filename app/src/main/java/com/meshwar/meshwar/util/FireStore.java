@@ -35,6 +35,9 @@ public class FireStore {
         return getFirestoreInstance().collection("favorites");
     }
 
+    public static Task<Void> updateUser(String userId , User user) {
+        return usersRef().document(userId).set(user);
+    }
     public static Task<DocumentReference> addPlaceToFav(String placeId) {
         Favorite favorite = new Favorite();
         favorite.setCreationDate(System.currentTimeMillis());

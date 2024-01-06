@@ -20,6 +20,7 @@ import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.meshwar.meshwar.databinding.ActivityMainBinding;
@@ -130,11 +131,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         TextView txtUserName = headerView.findViewById(R.id.txtUserName);
                         TextView txtUserEmail = headerView.findViewById(R.id.txtUserEmail);
                         CircleImageView imgUser = headerView.findViewById(R.id.imgUser);
+                        ShapeableImageView btnEdit = headerView.findViewById(R.id.btnEdit);
                         txtUserName.setText(user.getFullName());
                         txtUserEmail.setText(user.getEmail());
                         Glide.with(headerView)
                                 .load(user.getImageUrl())
                                 .into(imgUser);
+
+                        btnEdit.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                startActivity(new Intent(MainActivity.this , EditProfileActivity.class));
+                            }
+                        });
 
                     }
                 }

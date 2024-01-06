@@ -172,4 +172,7 @@
     <string name="university">University</string>
     <string name="latest_added_places">Lates Added Places</string>
     <string name="places">Places</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="update_profile_picture">Update Profile Picture</string>
+    <string name="save">Save</string>
 </resources>

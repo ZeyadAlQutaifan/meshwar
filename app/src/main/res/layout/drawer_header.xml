@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/lavender"
@@ -9,32 +9,55 @@
     android:padding="16dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imgUser"
-        android:layout_width="128dp"
-        android:layout_height="120dp"
-        app:civ_border_color="@color/white"
-        app:civ_border_width="@dimen/radius_2"
-        android:scaleType="centerCrop"
-        android:src="@drawable/no_user_img"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/txtUserName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        android:text="Android Knowledge"
-        android:layout_marginTop="@dimen/margin_8"
-        android:textStyle="bold"/>
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imgUser"
+                android:layout_width="128dp"
+                android:layout_height="120dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/no_user_img"
+                app:civ_border_color="@color/white"
+                app:civ_border_width="@dimen/radius_2" />
 
-    <TextView
-        android:id="@+id/txtUserEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="contact@meshwar.com"
-        android:textColor="@color/white"
-        android:layout_marginTop="@dimen/margin_8"
-        android:textSize="14sp"
-        android:layout_marginBottom="16dp"/>
+            <TextView
+                android:id="@+id/txtUserName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_8"
+                android:text="Android Knowledge"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtUserEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_8"
+                android:layout_marginBottom="16dp"
+                android:text="contact@meshwar.com"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+        </LinearLayout>
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/btnEdit"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="4dp"
+            android:background="@color/white"
+            android:elevation="2dp"
+            app:contentPadding="8dp"
+            app:shapeAppearance="?shapeAppearanceSmallComponent"
+            app:srcCompat="@drawable/baseline_edit_24"
+            app:tint="@color/lavender"
+             />
+    </LinearLayout>
 
 </LinearLayout>
