@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.LinearSnapHelper;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,6 +50,8 @@ public class MainFragment extends Fragment {
                 .setQuery(query, Place.class)
                 .build();
         latestRecyclerAdapter = new LatestRecyclerAdapter(placeOptions);
+        LinearSnapHelper snapHelper = new LinearSnapHelper();
+        snapHelper.attachToRecyclerView(binding.suggestedRecycler);
         binding.suggestedRecycler.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         binding.suggestedRecycler.setAdapter(latestRecyclerAdapter);
 

@@ -39,7 +39,6 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/login_email_editText"
                         android:layout_width="match_parent"
-                        android:text="zooz@z.com"
                         android:layout_height="match_parent"
                         android:inputType="textEmailAddress" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -58,7 +57,6 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/login_password_editText"
                         android:layout_width="match_parent"
-                        android:text="Zz123123"
                         android:layout_height="match_parent"
                         android:inputType="textPassword" />
                 </com.google.android.material.textfield.TextInputLayout>
