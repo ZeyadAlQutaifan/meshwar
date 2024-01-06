@@ -56,6 +56,7 @@
                     android:text="@string/app_name"
                     android:textAppearance="?attr/textAppearanceTitleLarge"
                     android:textStyle="bold" />
+
                 <RatingBar
                     android:id="@+id/rate"
                     style="?android:attr/ratingBarStyleSmall"
@@ -67,6 +68,7 @@
                     android:progressTint="@color/primary"
                     android:rating="4.5"
                     android:stepSize="0.5" />
+
                 <TextView
                     android:id="@+id/txtDescription"
                     android:layout_width="wrap_content"
@@ -83,23 +85,25 @@
                     android:layout_marginTop="8dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/suggestedRecycler" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Location"
                     android:layout_marginTop="@dimen/margin_16"
+                    android:text="Location"
                     android:textAppearance="?attr/textAppearanceBodyMedium" />
 
-                <FrameLayout
+
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="160dp"
-                    android:layout_marginTop="@dimen/margin_8"
-                    android:background="@drawable/map_view_bg">
+                    android:layout_marginTop="@dimen/margin_8">
+
                     <com.google.android.gms.maps.MapView
                         android:id="@+id/mapView2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
-                </FrameLayout>
+                </androidx.cardview.widget.CardView>
 
 
                 <com.google.android.material.divider.MaterialDivider
@@ -108,23 +112,39 @@
                     android:layout_marginTop="8dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/suggestedRecycler" />
-                <LinearLayout
+
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingVertical="@dimen/padding_8"
-                    android:weightSum="10">
-                    <TextView
-                        android:id="@+id/txtCommentCount"
-                        android:layout_width="wrap_content"
+                    app:cardCornerRadius="5dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="9"
-                        android:text="44 Comment"
-                        android:textAppearance="?attr/textAppearanceBodyLarge"/>
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/baseline_arrow_forward_24"/>
-                </LinearLayout>
+                        android:layout_margin="@dimen/margin_8"
+                        android:paddingVertical="@dimen/padding_8">
+
+                        <ImageView
+                            android:id="@+id/imageView4"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/baseline_mode_comment_24" />
+
+                        <TextView
+                            android:id="@+id/txtCommentCount"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:text="44 Comment"
+                            android:textAppearance="?attr/textAppearanceBodyLarge" />
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/baseline_arrow_forward_24" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
 
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>

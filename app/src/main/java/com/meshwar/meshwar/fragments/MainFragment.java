@@ -49,7 +49,7 @@ public class MainFragment extends Fragment {
                 .setQuery(query, Place.class)
                 .build();
         latestRecyclerAdapter = new LatestRecyclerAdapter(placeOptions);
-        binding.suggestedRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.suggestedRecycler.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         binding.suggestedRecycler.setAdapter(latestRecyclerAdapter);
 
         binding.txtViewAll.setOnClickListener(new View.OnClickListener() {
