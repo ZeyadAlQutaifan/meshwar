@@ -9,14 +9,21 @@
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_home"
             android:title="Home"/>
+
         <item
-            android:id="@+id/nav_profile"
-            android:icon="@drawable/ic_person"
-            android:title="Profile"/>
-        <item
-            android:id="@+id/nav_share"
-            android:icon="@drawable/baseline_share_24"
+            android:id="@+id/nav_my_post"
+            android:icon="@drawable/baseline_newspaper_24"
             android:title="My Posts"/>
+        <item
+            android:id="@+id/nav_favorite"
+            android:icon="@drawable/ic_favorite"
+            android:title="Favorite Places"/>
+
+        <item
+            android:id="@+id/nav_nearby"
+            android:icon="@drawable/ic_location"
+            android:title="Nearby Places"/>
+
         <item
             android:id="@+id/nav_about"
             android:icon="@drawable/baseline_info_24"

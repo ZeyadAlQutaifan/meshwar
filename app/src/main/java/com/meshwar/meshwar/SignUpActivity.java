@@ -67,8 +67,8 @@ public class SignUpActivity extends AppCompatActivity {
             return;
         }
         if (password.isEmpty()) {
-            binding.etEmail.setError("Required");
-            binding.etEmail.requestFocus();
+            binding.etPassword.setError("Required");
+            binding.etPassword.requestFocus();
             return;
         }
 
@@ -82,7 +82,7 @@ public class SignUpActivity extends AppCompatActivity {
             binding.etPassword.requestFocus();
             return;
         }
-        if (password.equals(confirmPassword)) {
+        if (!password.equals(confirmPassword)) {
             binding.etConfirmPassword.setError("Must be more that 8 ");
             binding.etConfirmPassword.requestFocus();
             return;
@@ -92,7 +92,9 @@ public class SignUpActivity extends AppCompatActivity {
         User.getInstance().setEmail(email);
         User.getInstance().setFullName(fullName);
         User.getInstance().setCreationDate(System.currentTimeMillis());
-        startActivity(new Intent(this, PickImageActivity.class));
+        Intent intent  = new Intent(this, PickImageActivity.class) ;
+        intent.putExtra("PASSWORD" , password) ;
+        startActivity(intent);
 
 
     }

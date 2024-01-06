@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="fragments.MainFragment">
 
@@ -16,7 +17,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
 
-            android:text="@string/most_visited_places"
+            android:text="@string/latest_added_places"
             android:textAppearance="?attr/textAppearanceBody2"
             android:textColor="?android:attr/textColorSecondary"
             app:layout_constraintStart_toStartOf="@+id/cardView"
@@ -45,6 +46,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:scrollbars="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/cardView"
             app:layout_constraintStart_toStartOf="@+id/cardView"
             app:layout_constraintTop_toBottomOf="@+id/textView"
@@ -88,7 +90,7 @@
                         android:layout_marginHorizontal="@dimen/margin_8"
                         android:layout_marginVertical="@dimen/margin_16"
                         android:text="Weather Today "
-                        android:textColor="@color/background"
+                        android:textColor="@color/lavender"
                         android:textSize="@dimen/text_22"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -115,7 +117,7 @@
                         android:layout_gravity="center"
                         android:layout_marginVertical="@dimen/margin_8"
                         android:text="11"
-                        android:textColor="@color/background"
+                        android:textColor="@color/lavender"
                         android:textSize="48sp"
                         app:layout_constraintStart_toStartOf="@+id/textView17"
                         app:layout_constraintTop_toBottomOf="@+id/textView17" />

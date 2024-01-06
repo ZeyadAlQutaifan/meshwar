@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.meshwar.meshwar.databinding.ActivityTest2Binding;
-import com.meshwar.meshwar.fragments.FavorateFragment;
 import com.meshwar.meshwar.fragments.MainFragment;
 import com.meshwar.meshwar.fragments.NearbyFragment;
 import com.meshwar.meshwar.fragments.ProfileFragment;
@@ -42,9 +41,7 @@ public class TestActivity2 extends AppCompatActivity implements NavigationView.O
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.nav_home) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_view_tag, new MainFragment()).commit();
-        } else if (item.getItemId() == R.id.nav_profile) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_view_tag, new FavorateFragment()).commit();
-        } else if (item.getItemId() == R.id.nav_share) {
+        } else if (item.getItemId() == R.id.nav_my_post) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_view_tag, new NearbyFragment()).commit();
         } else if (item.getItemId() == R.id.nav_about) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_view_tag, new ProfileFragment()).commit();

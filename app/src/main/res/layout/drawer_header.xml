@@ -1,31 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="176dp"
+    android:layout_height="wrap_content"
+    android:background="@color/lavender"
     android:gravity="bottom"
     android:padding="16dp"
-    android:background="@drawable/headerbkg"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/aklogo"/>
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imgUser"
+        android:layout_width="128dp"
+        android:layout_height="120dp"
+        app:civ_border_color="@color/white"
+        app:civ_border_width="@dimen/radius_2"
+        android:scaleType="centerCrop"
+        android:src="@drawable/no_user_img"/>
 
     <TextView
+        android:id="@+id/txtUserName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Android Knowledge"
         android:textColor="@color/white"
+        android:text="Android Knowledge"
+        android:layout_marginTop="@dimen/margin_8"
         android:textStyle="bold"/>
 
     <TextView
+        android:id="@+id/txtUserEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="contact@androidknowledge.com"
+        android:text="contact@meshwar.com"
         android:textColor="@color/white"
+        android:layout_marginTop="@dimen/margin_8"
         android:textSize="14sp"
         android:layout_marginBottom="16dp"/>
 

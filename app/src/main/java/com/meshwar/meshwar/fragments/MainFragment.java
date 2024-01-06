@@ -2,11 +2,9 @@ package com.meshwar.meshwar.fragments;
 
 import static com.meshwar.meshwar.util.FireStore.placesRef;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -22,10 +20,9 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.Query;
-import com.meshwar.meshwar.AllPlacesActivity;
 import com.meshwar.meshwar.GPS.GPSTracker;
 import com.meshwar.meshwar.R;
-import com.meshwar.meshwar.adapters.MostViewsRecyclerAdapter;
+import com.meshwar.meshwar.adapters.LatestRecyclerAdapter;
 import com.meshwar.meshwar.databinding.FragmentMainBinding;
 import com.meshwar.meshwar.models.Place;
 import com.meshwar.meshwar.util.Constant;
@@ -39,7 +36,7 @@ public class MainFragment extends Fragment {
     FragmentMainBinding binding;
     double longitude = 0, latitude = 0;
 
-    private MostViewsRecyclerAdapter mostViewsRecyclerAdapter;
+    private LatestRecyclerAdapter latestRecyclerAdapter;
 
 
     @Override
@@ -47,13 +44,13 @@ public class MainFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentMainBinding.inflate(inflater, container, false);
 
-        Query query = placesRef().orderBy("views", Query.Direction.DESCENDING).limit(5);
+        Query query = placesRef().orderBy("createdAt", Query.Direction.DESCENDING).limit(5);
         FirestoreRecyclerOptions<Place> placeOptions = new FirestoreRecyclerOptions.Builder<Place>()
                 .setQuery(query, Place.class)
                 .build();
-        mostViewsRecyclerAdapter = new MostViewsRecyclerAdapter(placeOptions);
-        binding.suggestedRecycler.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-        binding.suggestedRecycler.setAdapter(mostViewsRecyclerAdapter);
+        latestRecyclerAdapter = new LatestRecyclerAdapter(placeOptions);
+        binding.suggestedRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.suggestedRecycler.setAdapter(latestRecyclerAdapter);
 
         binding.txtViewAll.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,13 +68,13 @@ public class MainFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        mostViewsRecyclerAdapter.startListening();
+        latestRecyclerAdapter.startListening();
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        mostViewsRecyclerAdapter.stopListening();
+        latestRecyclerAdapter.stopListening();
     }
 
     @Override

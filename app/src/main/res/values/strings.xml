@@ -163,4 +163,12 @@
     <string name="write_comment">Write comment</string>
     <string name="contact">Contact</string>
     <string name="pick_image">Pick Profile Image</string>
+    <string name="nearby_places">Nearby Places</string>
+    <string name="mosque">Mosque</string>
+    <string name="atm">ATM</string>
+    <string name="hotels">Hotels</string>
+    <string name="park">Park</string>
+    <string name="gym">GYM</string>
+    <string name="university">University</string>
+    <string name="latest_added_places">Lates Added Places</string>
 </resources>

@@ -24,6 +24,9 @@ public class User {
         return instance;
     }
 
+    public static void destroy(){
+        instance = null ;
+    }
     public User(String imageUrl, String email, boolean isAdmin, String fullName, long creationDate) {
         this.imageUrl = imageUrl;
         this.email = email;

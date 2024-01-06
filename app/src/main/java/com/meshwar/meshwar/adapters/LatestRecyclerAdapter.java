@@ -1,8 +1,5 @@
 package com.meshwar.meshwar.adapters;
 
-import static androidx.core.content.ContextCompat.startActivity;
-
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +7,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -18,14 +14,12 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.material.card.MaterialCardView;
 import com.meshwar.meshwar.R;
-import com.meshwar.meshwar.databinding.ItemSuggestedPlaceBinding;
 import com.meshwar.meshwar.models.Place;
-import com.meshwar.meshwar.util.Constant;
 import com.meshwar.meshwar.util.Global;
 
-public class MostViewsRecyclerAdapter  extends FirestoreRecyclerAdapter<Place, MostViewsRecyclerAdapter.MostViewHolder> {
+public class LatestRecyclerAdapter extends FirestoreRecyclerAdapter<Place, LatestRecyclerAdapter.MostViewHolder> {
 
-    public MostViewsRecyclerAdapter(@NonNull FirestoreRecyclerOptions<Place> options) {
+    public LatestRecyclerAdapter(@NonNull FirestoreRecyclerOptions<Place> options) {
         super(options);
     }
 
