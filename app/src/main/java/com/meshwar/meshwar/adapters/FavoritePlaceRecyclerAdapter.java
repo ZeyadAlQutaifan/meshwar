@@ -121,19 +121,6 @@ public class FavoritePlaceRecyclerAdapter extends FirestoreRecyclerAdapter<Favor
         });
     }
 
-    private int getPlaceFavoriteCount(String placeId) {
-        final int[] count = {0};
-        FireStore.favRef().whereEqualTo("placeId" , placeId).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()){
-                    QuerySnapshot queryDocumentSnapshots = task.getResult();
-                    count[0] = queryDocumentSnapshots.size();
-                }
-            }
-        });
-        return count[0];
-    }
 
     @NonNull
     @Override
@@ -144,7 +131,6 @@ public class FavoritePlaceRecyclerAdapter extends FirestoreRecyclerAdapter<Favor
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         MaterialCardView materialCardView;
-
         ImageView imgPlace;
         TextView tvTitle;
         TextView tvContent;

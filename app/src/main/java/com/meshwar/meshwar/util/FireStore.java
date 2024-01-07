@@ -90,8 +90,8 @@ public class FireStore {
         return placesRef().add(Place.getInstance());
     }
 
-    public static Task<Void> writeUser(String userId, User newUser) {
-        return usersRef().document(userId).set(newUser);
+    public static Task<Void> writeUser(String userId) {
+        return usersRef().document(userId).set(User.getInstance());
     }
 
     public static Task<DocumentSnapshot> getUser(String ownerID) {

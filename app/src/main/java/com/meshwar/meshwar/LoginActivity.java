@@ -14,6 +14,7 @@ import com.google.firebase.auth.AuthResult;
 import com.meshwar.meshwar.databinding.ActivityLoginBinding;
 import com.meshwar.meshwar.databinding.ActivityMainBinding;
 import com.meshwar.meshwar.util.FireAuth;
+import com.meshwar.meshwar.util.Global;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -41,10 +42,22 @@ public class LoginActivity extends AppCompatActivity {
     private void login() {
         String email = binding.loginEmailEditText.getText().toString().trim();
         String password = binding.loginPasswordEditText.getText().toString().trim();
+        if (email.isEmpty()) {
+            binding.loginEmailEditText.setError("Required");
+            binding.loginEmailEditText.requestFocus();
+            return;
+        }
+        if (!Global.isValidEmail(email)) {
+            binding.loginEmailEditText.setError("Invalid email");
+            binding.loginEmailEditText.requestFocus();
+            return;
+        }
+        // TODO validate id email is valid
         FireAuth.login(email, password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                     @Override
                     public void onSuccess(AuthResult authResult) {
                         startActivity(new Intent(LoginActivity.this , MainActivity.class));
+                        finish();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

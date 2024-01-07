@@ -171,7 +171,7 @@
 
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/suggestedRecycler"
+            android:id="@+id/latestRecycler"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -189,7 +189,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/suggestedRecycler" />
+            app:layout_constraintTop_toBottomOf="@+id/latestRecycler" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

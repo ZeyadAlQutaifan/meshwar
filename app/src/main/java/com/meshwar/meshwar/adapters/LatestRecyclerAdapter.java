@@ -22,7 +22,7 @@ import org.w3c.dom.Text;
 
 public class LatestRecyclerAdapter extends FirestoreRecyclerAdapter<Place, LatestRecyclerAdapter.MostViewHolder> {
 
-    public LatestRecyclerAdapter(@NonNull FirestoreRecyclerOptions<Place> options) {
+    public LatestRecyclerAdapter(@NonNull FirestoreRecyclerOptions<Place>options ) {
         super(options);
     }
 

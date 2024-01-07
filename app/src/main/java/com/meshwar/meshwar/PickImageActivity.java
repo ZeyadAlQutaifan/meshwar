@@ -92,6 +92,7 @@ public class PickImageActivity extends AppCompatActivity {
         FireAuth.createUser(User.getInstance().getEmail(), password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
             @Override
             public void onSuccess(AuthResult authResult) {
+
                 uploadImage();
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -117,14 +118,16 @@ public class PickImageActivity extends AppCompatActivity {
     private void uploadUser() {
         String userId = FireAuth.authInstance.getUid();
 
-        FireStore.writeUser(userId, User.getInstance())
+        FireStore.writeUser(userId)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
+                        User.destroy();
                         Intent intent = new Intent(PickImageActivity.this, MainActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
                         finish(); // Finish the current activity
+
                     }
                 });
     }

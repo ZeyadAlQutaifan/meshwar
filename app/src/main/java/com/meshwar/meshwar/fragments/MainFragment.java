@@ -27,6 +27,7 @@ import com.meshwar.meshwar.adapters.LatestRecyclerAdapter;
 import com.meshwar.meshwar.databinding.FragmentMainBinding;
 import com.meshwar.meshwar.models.Place;
 import com.meshwar.meshwar.util.Constant;
+import com.meshwar.meshwar.util.FireStore;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -45,15 +46,15 @@ public class MainFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentMainBinding.inflate(inflater, container, false);
 
-        Query query = placesRef().orderBy("createdAt", Query.Direction.DESCENDING).limit(5);
+        Query query = FireStore.placesRef().orderBy("createdAt", Query.Direction.DESCENDING).limit(5);
         FirestoreRecyclerOptions<Place> placeOptions = new FirestoreRecyclerOptions.Builder<Place>()
                 .setQuery(query, Place.class)
                 .build();
         latestRecyclerAdapter = new LatestRecyclerAdapter(placeOptions);
         LinearSnapHelper snapHelper = new LinearSnapHelper();
-        snapHelper.attachToRecyclerView(binding.suggestedRecycler);
-        binding.suggestedRecycler.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
-        binding.suggestedRecycler.setAdapter(latestRecyclerAdapter);
+        snapHelper.attachToRecyclerView(binding.latestRecycler);
+        binding.latestRecycler.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+        binding.latestRecycler.setAdapter(latestRecyclerAdapter);
 
         binding.txtViewAll.setOnClickListener(new View.OnClickListener() {
             @Override
