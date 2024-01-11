@@ -1,5 +1,6 @@
 package com.meshwar.meshwar;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 
@@ -24,7 +25,7 @@ import com.meshwar.meshwar.util.Constant;
 public class LocationPickerActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    private LatLng sydney = new LatLng(-8.579892, 116.095239);
+    private LatLng sydney = new LatLng(Constant.LATITUDE, Constant.LONGITUDE);
     private MapFragment mapFragment;
 
     double lat , lon;
@@ -62,6 +63,17 @@ public class LocationPickerActivity extends FragmentActivity implements OnMapRea
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 8.5f));
+        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(@NonNull LatLng latLng) {
+                MarkerOptions markerOptions = new MarkerOptions() ;
+                markerOptions.position(latLng);
+                markerOptions.title("lat: " +latLng.latitude + "," + "lng:" + latLng.longitude);
+                mMap.clear();
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 20));
+                mMap.addMarker(markerOptions); 
+            }
+        });
         mMap.addMarker(new MarkerOptions()
                 .position(sydney)
                 .title("www.kodetr.com")

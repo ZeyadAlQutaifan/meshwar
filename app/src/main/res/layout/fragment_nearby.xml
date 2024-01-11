@@ -91,11 +91,7 @@
                         android:layout_marginStart="@dimen/margin_4"
                         android:textAppearance="?attr/textAppearanceTitleMedium" />
 
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_gravity="center_vertical"
-                        android:src="@drawable/baseline_arrow_forward_24"/>
+
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
             <androidx.cardview.widget.CardView

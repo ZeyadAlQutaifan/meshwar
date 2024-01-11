@@ -1,9 +1,12 @@
 package com.meshwar.meshwar.util;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.pm.PackageManager;
+import android.location.Location;
 import android.net.Uri;
 import android.webkit.MimeTypeMap;
 import android.widget.TextView;
@@ -11,12 +14,15 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.app.ActivityCompat;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -162,13 +168,16 @@ public class Global {
         // Calculate distance
         double distance = 6371 * c;
 
-        return distance/100000;
+        return distance ;
     }
+
     public static String formatDistance(double distance) {
         // Format the distance to two decimal points
         DecimalFormat df = new DecimalFormat("#.##");
         return df.format(distance);
     }
+
+
 
     public static String getFileExtension(Uri uri, ContentResolver contentResolver) {
         ContentResolver cr = contentResolver;
@@ -228,7 +237,6 @@ public class Global {
         }
 
     }
-
 
 
     public static String getNullCity(String city) {

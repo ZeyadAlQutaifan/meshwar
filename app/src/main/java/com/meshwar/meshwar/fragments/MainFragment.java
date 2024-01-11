@@ -2,8 +2,12 @@ package com.meshwar.meshwar.fragments;
 
 import static com.meshwar.meshwar.util.FireStore.placesRef;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -20,6 +24,8 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.firebase.firestore.Query;
 import com.meshwar.meshwar.GPS.GPSTracker;
 import com.meshwar.meshwar.R;
@@ -36,15 +42,16 @@ import org.json.JSONObject;
 public class MainFragment extends Fragment {
 
     FragmentMainBinding binding;
-    double longitude = 0, latitude = 0;
 
     private LatestRecyclerAdapter latestRecyclerAdapter;
+    private FusedLocationProviderClient fusedLocationClient;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentMainBinding.inflate(inflater, container, false);
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(getActivity());
 
         Query query = FireStore.placesRef().orderBy("createdAt", Query.Direction.DESCENDING).limit(5);
         FirestoreRecyclerOptions<Place> placeOptions = new FirestoreRecyclerOptions.Builder<Place>()
@@ -94,32 +101,43 @@ public class MainFragment extends Fragment {
      * If location retrieval is unsuccessful, prompts the user to enable location services.
      */
     private void getLocation() {
-        // Create an instance of GPSTracker to obtain the current location
-        GPSTracker tracker = new GPSTracker(getActivity());
 
-        // Check if location retrieval is possible
-        if (!tracker.canGetLocation()) {
-            // If not, prompt the user to enable location services
-            tracker.showSettingsAlert();
+        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
         } else {
-            // If location retrieval is successful, get the latitude and longitude
-            latitude = tracker.getLatitude();
-            longitude = tracker.getLongitude();
-
-            // Update constant reference values with the obtained location
-            Constant.LATITUDE = latitude;
-            Constant.LONGITUDE = longitude;
-
-            // Display the current weather status based on the obtained location
-            showWeatherStatus();
+            fusedLocationClient.getLastLocation()
+                    .addOnSuccessListener(getActivity(), location -> {
+                        if (location != null) {
+                            double latitude = location.getLatitude();
+                            double longitude = location.getLongitude();
+                            Toast.makeText(getActivity(), latitude + ",", Toast.LENGTH_SHORT).show();
+                            showWeatherStatus(latitude , longitude);
+                            Constant.LONGITUDE = longitude ;
+                            Constant.LATITUDE = latitude;
+                        } else {
+                        }
+                    });
         }
     }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-    private void showWeatherStatus() {
+        if (requestCode == 1) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Permission is granted, proceed to get the location
+                getLocation();
+            } else {
+                // Permission is denied, handle accordingly (e.g., show a message to the user)
+                Toast.makeText(getActivity(), "Location permission denied", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+    private void showWeatherStatus(double lat , double lon) {
         String weatherURL = Constant.WEATHER_URI +
-                Constant.LATITUDE_BLOCK.replace("{#}", String.valueOf(latitude)) +
+                Constant.LATITUDE_BLOCK.replace("{#}", String.valueOf(lat)) +
                 Constant.AND +
-                Constant.LONGITUDE_BLOCK.replace("{#}", String.valueOf(longitude)) +
+                Constant.LONGITUDE_BLOCK.replace("{#}", String.valueOf(lon)) +
                 Constant.AND +
                 Constant.KEY_BLOCK.replace("{#}", Constant.WEATHER_KEY);
 

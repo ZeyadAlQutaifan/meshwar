@@ -1,12 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/lavender"
+    android:orientation="vertical"
     tools:context=".fragments.FavorateFragment">
+
+    <TextView
+        android:id="@+id/signup_title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="8dp"
+        android:text="@string/favorite_places"
+        android:layout_marginStart="@dimen/margin_8"
+        android:textAllCaps="true"
+        android:textAppearance="?attr/textAppearanceTitleLarge"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:transitionName="transition_title_text" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerFavPlaces"
         android:layout_width="match_parent"
+        android:layout_margin="8dp"
         android:layout_height="match_parent" />
-</FrameLayout>
+</LinearLayout>
