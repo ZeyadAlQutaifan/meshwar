@@ -29,6 +29,17 @@ public class NearbyFragment extends Fragment {
                 startActivity(intent);
             }
         });
+        binding.atm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity() , NearbyMapActivity.class);
+                intent.putExtra("KEY" ,"atm");
+                startActivity(intent);
+            }
+        });
+
+
+
         return binding.getRoot();
     }
 }

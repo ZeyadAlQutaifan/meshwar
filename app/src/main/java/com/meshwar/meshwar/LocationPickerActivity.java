@@ -71,7 +71,9 @@ public class LocationPickerActivity extends FragmentActivity implements OnMapRea
                 markerOptions.title("lat: " +latLng.latitude + "," + "lng:" + latLng.longitude);
                 mMap.clear();
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 20));
-                mMap.addMarker(markerOptions); 
+                mMap.addMarker(markerOptions);
+                lat = latLng.latitude;
+                lon  = latLng.longitude;
             }
         });
         mMap.addMarker(new MarkerOptions()
