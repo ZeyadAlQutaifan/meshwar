@@ -1,8 +1,10 @@
 package com.meshwar.meshwar.fragments;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -149,6 +151,15 @@ public class ViewPlaceFragment extends Fragment implements OnMapReadyCallback {
 
                     // Update the map to display the location of the place with a specific zoom level
                     updateLocation(new LatLng(place.getLat(), place.getLng()), 18);
+                    binding.btnNavigate.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Uri gmmIntentUri = Uri.parse("google.navigation:q=" + place.getLat()+"," + place.getLng()+"&mode=d");
+                            Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                            mapIntent.setPackage("com.google.android.apps.maps");
+                            startActivity(mapIntent);
+                        }
+                    });
                 }
             }
         });

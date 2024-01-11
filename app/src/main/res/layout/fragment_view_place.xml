@@ -68,6 +68,7 @@
                     android:progressTint="@color/primary"
                     android:rating="4.5"
                     android:stepSize="0.5" />
+
                 <com.google.android.material.chip.ChipGroup
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -79,7 +80,7 @@
                         android:layout_height="wrap_content"
                         android:text="city"
                         app:chipIcon="@drawable/ic_location"
-                        app:chipIconTint="@color/material_dynamic_secondary50"/>
+                        app:chipIconTint="@color/material_dynamic_secondary50" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/favorites"
@@ -88,7 +89,7 @@
                         android:layout_height="wrap_content"
                         android:text="(10) views"
                         app:chipIcon="@drawable/ic_favorite"
-                        app:chipIconTint="@color/material_dynamic_secondary50"/>
+                        app:chipIconTint="@color/material_dynamic_secondary50" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/distance"
@@ -97,7 +98,8 @@
                         android:layout_height="wrap_content"
                         android:text="(3.67) KM"
                         app:chipIcon="@drawable/baseline_navigation_24"
-                        app:chipIconTint="@color/material_dynamic_secondary50"/>
+                        app:chipIconTint="@color/material_dynamic_secondary50" />
+
                     <com.google.android.material.chip.Chip
                         android:id="@+id/weather"
                         style="@style/Widget.Material3.Chip.Assist"
@@ -105,10 +107,11 @@
                         android:layout_height="wrap_content"
                         android:text="(24) C"
                         app:chipIcon="@drawable/baseline_wb_sunny_24"
-                        app:chipIconTint="@color/material_dynamic_secondary50"/>
+                        app:chipIconTint="@color/material_dynamic_secondary50" />
 
 
                 </com.google.android.material.chip.ChipGroup>
+
                 <TextView
                     android:id="@+id/txtDescription"
                     android:layout_width="wrap_content"
@@ -146,6 +149,13 @@
                         android:layout_height="match_parent" />
                 </androidx.cardview.widget.CardView>
 
+                <Button
+                    android:id="@+id/btnNavigate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/baseline_navigation_24"
+                    android:drawableTint="@color/white"
+                    android:text="Navigate" />
 
                 <com.google.android.material.divider.MaterialDivider
                     android:layout_width="match_parent"
@@ -177,7 +187,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
                             android:layout_weight="1"
-                            android:text="44 Comment"
+                            android:text="Comment"
                             android:textAppearance="?attr/textAppearanceBodyLarge" />
 
                         <ImageView
