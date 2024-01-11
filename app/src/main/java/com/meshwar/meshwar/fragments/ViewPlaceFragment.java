@@ -30,6 +30,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
@@ -65,6 +66,7 @@ public class ViewPlaceFragment extends Fragment implements OnMapReadyCallback {
     private boolean isFavorite = false;
 
     private String placeId;
+    private static final LatLng SYDNEY_LOCATION = new LatLng(-33.8688, 151.2093);
 
     public ViewPlaceFragment() {
         // Required empty public constructor
@@ -91,6 +93,7 @@ public class ViewPlaceFragment extends Fragment implements OnMapReadyCallback {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentViewPlaceBinding.inflate(inflater, container, false);
+        binding.mapView2.onCreate(savedInstanceState);
         binding.mapView2.getMapAsync(this);
         binding.btnLike.setCheckable(true);
 
@@ -329,12 +332,28 @@ public class ViewPlaceFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+
+        // Move the camera to Sydney and add a marker
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(SYDNEY_LOCATION, 10));
+        mMap.addMarker(new MarkerOptions().position(SYDNEY_LOCATION).title("Sydney Marker"));
+
     }
 
     private void updateLocation(LatLng location, float zoomLevel) {
         if (mMap != null) {
+            // Clear existing markers before adding a new one
+            mMap.clear();
+
+            // Move the camera to the specified location and set the zoom level
             mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
             mMap.animateCamera(CameraUpdateFactory.zoomTo(zoomLevel));
+
+            // Add a marker at the specified location
+            MarkerOptions markerOptions = new MarkerOptions()
+                    .position(location)
+                    .title("Marker Title")  // You can customize the title
+                    .snippet("Marker Snippet");  // You can customize the snippet
+            mMap.addMarker(markerOptions);
         }
     }
 

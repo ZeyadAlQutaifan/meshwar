@@ -38,13 +38,16 @@ import java.util.ArrayList;
 
 public class AddPlaceActivity extends AppCompatActivity {
 
-    ActivityAddPlaceBinding binding ;
+    ActivityAddPlaceBinding binding;
     private static final int REQUEST_CODE = 1; // You can choose any request code
 
     ArrayList<Uri> chosenImagesUriList = new ArrayList<>();
     private RecyclerImageFromGalleryAdapter recyclerImageFromGalleryAdapter;
     private static final int READ_PERMISSION = 101;
     private ProgressDialog progressDialog;
+
+    private double lat;
+    private double lon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,15 +71,7 @@ public class AddPlaceActivity extends AppCompatActivity {
         binding.btnPickLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
-                try {
-                    startActivityForResult(builder.build(AddPlaceActivity.this), REQUEST_CODE);
-                } catch (GooglePlayServicesRepairableException e) {
-                    throw new RuntimeException(e);
-                } catch (GooglePlayServicesNotAvailableException e) {
-                    throw new RuntimeException(e);
-                }
+                startActivityForResult(new Intent(getApplicationContext(), LocationPickerActivity.class), 2);
             }
         });
 
@@ -88,8 +83,8 @@ public class AddPlaceActivity extends AppCompatActivity {
                 progressDialog.setMessage("Loading...");
                 progressDialog.show();
                 Place place = Place.getInstance();
-                place.setLng(8.44);
-                place.setLat(94.444);
+                place.setLng(lon);
+                place.setLat(lat);
                 for (Uri uri : chosenImagesUriList) {
                     place.getImages().add(String.valueOf(uri));
                 }
@@ -121,6 +116,7 @@ public class AddPlaceActivity extends AppCompatActivity {
         });
 
     }
+
     private void initPickImagesRecyclerView() {
 
         recyclerImageFromGalleryAdapter = new RecyclerImageFromGalleryAdapter(chosenImagesUriList);
@@ -132,13 +128,25 @@ public class AddPlaceActivity extends AppCompatActivity {
                     new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, READ_PERMISSION);
         }
 
-
-
-
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 2) {
+            if (resultCode == RESULT_OK) {
+                lat = data.getDoubleExtra("LAT", 0.0);
+                lon = data.getDoubleExtra("LON", 0.0);
+
+            }
+        }
+    }
+
     private void finishAndGoBackToManin() {
-       finish();
+        finish();
     }
+
     ActivityResultLauncher<Intent> pickMedia =
             registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
                 if (result.getResultCode() == Activity.RESULT_OK) {

@@ -162,7 +162,7 @@ public class Global {
         // Calculate distance
         double distance = 6371 * c;
 
-        return distance;
+        return distance/100000;
     }
     public static String formatDistance(double distance) {
         // Format the distance to two decimal points

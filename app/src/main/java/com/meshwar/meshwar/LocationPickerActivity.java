@@ -34,6 +34,8 @@ public class LocationPickerActivity extends FragmentActivity implements OnMapRea
         setContentView(R.layout.activity_location_picker);
         mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
         setupAutoCompleteFragment();
+        mapFragment.getMapAsync(LocationPickerActivity.this);
+
     }
 
 
