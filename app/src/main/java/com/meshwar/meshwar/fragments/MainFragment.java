@@ -110,11 +110,12 @@ public class MainFragment extends Fragment {
                         if (location != null) {
                             double latitude = location.getLatitude();
                             double longitude = location.getLongitude();
-                            Toast.makeText(getActivity(), latitude + ",", Toast.LENGTH_SHORT).show();
+
                             showWeatherStatus(latitude , longitude);
                             Constant.LONGITUDE = longitude ;
                             Constant.LATITUDE = latitude;
                         } else {
+                            Toast.makeText(getActivity(), "unable to capture location" , Toast.LENGTH_SHORT).show();
                         }
                     });
         }
