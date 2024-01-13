@@ -54,6 +54,7 @@ public class FavorateFragment extends Fragment {
         binding.recyclerFavPlaces.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.recyclerFavPlaces.setAdapter(favoritePlacesRecyclerAdapter);
         favoritePlacesRecyclerAdapter.startListening();
+        //item added to favourite
     }
 
     @Override

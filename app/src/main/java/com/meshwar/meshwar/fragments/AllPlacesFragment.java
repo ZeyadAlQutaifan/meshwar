@@ -29,7 +29,7 @@ public class AllPlacesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        // Inflate(xml to java) the layout for this fragment
         binding =  FragmentAllPlacesBinding.inflate(inflater, container, false);
         Query query = placesRef();
         FirestoreRecyclerOptions<Place> placeOptions = new FirestoreRecyclerOptions.Builder<Place>()

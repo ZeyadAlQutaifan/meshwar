@@ -37,6 +37,38 @@ public class NearbyFragment extends Fragment {
                 startActivity(intent);
             }
         });
+        binding.gym.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity() , NearbyMapActivity.class);
+                intent.putExtra("KEY" ,"gym");
+                startActivity(intent);
+            }
+        });
+        binding.hotel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity() , NearbyMapActivity.class);
+                intent.putExtra("KEY" ,"lodging");
+                startActivity(intent);
+            }
+        });
+        binding.park.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity() , NearbyMapActivity.class);
+                intent.putExtra("KEY" ,"park");
+                startActivity(intent);
+            }
+        });
+        binding.university.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity() , NearbyMapActivity.class);
+                intent.putExtra("KEY" ,"university");
+                startActivity(intent);
+            }
+        });
 
 
 

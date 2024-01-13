@@ -52,16 +52,18 @@ public class MainFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentMainBinding.inflate(inflater, container, false);
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(getActivity());
-
+// handle loaction
         Query query = FireStore.placesRef().orderBy("createdAt", Query.Direction.DESCENDING).limit(5);
         FirestoreRecyclerOptions<Place> placeOptions = new FirestoreRecyclerOptions.Builder<Place>()
                 .setQuery(query, Place.class)
                 .build();
+        // Extract from database
         latestRecyclerAdapter = new LatestRecyclerAdapter(placeOptions);
         LinearSnapHelper snapHelper = new LinearSnapHelper();
         snapHelper.attachToRecyclerView(binding.latestRecycler);
         binding.latestRecycler.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         binding.latestRecycler.setAdapter(latestRecyclerAdapter);
+//places gallery
 
         binding.txtViewAll.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,6 +73,7 @@ public class MainFragment extends Fragment {
                 transaction.replace(R.id.fragment_container_view_tag, fragment2);
                 transaction.addToBackStack(null);
                 transaction.commit();
+                //تتنقل بين الcontainers داخل الfragment
             }
         });
         return binding.getRoot();
@@ -144,7 +147,7 @@ public class MainFragment extends Fragment {
 
         RequestQueue queue = Volley.newRequestQueue(getActivity());
         // this is the error listener method which
-// we will call if we get any error from API.
+          // we will call if we get any error from API.
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, weatherURL, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {

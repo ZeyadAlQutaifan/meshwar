@@ -96,7 +96,9 @@
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
+                android:id="@+id/hotel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/margin_4"
@@ -116,13 +118,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:text="@string/hotels"
                         android:layout_marginStart="@dimen/margin_4"
+                        android:text="@string/hotels"
                         android:textAppearance="?attr/textAppearanceTitleMedium" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
+                android:id="@+id/park"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/margin_4"
@@ -142,13 +146,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:text="@string/park"
                         android:layout_marginStart="@dimen/margin_4"
+                        android:text="@string/park"
                         android:textAppearance="?attr/textAppearanceTitleMedium" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
+                android:id="@+id/gym"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/margin_4"
@@ -168,13 +174,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:text="@string/gym"
                         android:layout_marginStart="@dimen/margin_4"
+                        android:text="@string/gym"
                         android:textAppearance="?attr/textAppearanceTitleMedium" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
+                android:id="@+id/university"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/margin_4"
@@ -194,8 +202,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:text="@string/university"
                         android:layout_marginStart="@dimen/margin_4"
+                        android:text="@string/university"
                         android:textAppearance="?attr/textAppearanceTitleMedium" />
 
                 </LinearLayout>
