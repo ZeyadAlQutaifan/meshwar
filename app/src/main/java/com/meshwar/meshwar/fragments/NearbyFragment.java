@@ -65,7 +65,7 @@ public class NearbyFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity() , NearbyMapActivity.class);
-                intent.putExtra("KEY" ,"university");
+                intent.putExtra("KEY" ,"car_repair");
                 startActivity(intent);
             }
         });
