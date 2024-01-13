@@ -38,18 +38,7 @@ public class LatestRecyclerAdapter extends FirestoreRecyclerAdapter<Place, Lates
                     .into(holder.imageView);
         }
 
-        holder.container.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                final int i = holder.getAdapterPosition();
-//                Intent intent = new Intent(holder.itemView.getContext(), PlaceActivity.class);
-//                intent.putExtra(Constant.PASSING_OBJECT_KEY, model);
-//                intent.putExtra(Constant.PASSING_REF_KEY, getSnapshots().getSnapshot(i).getKey());
-//
-//                startActivity(intent);
 
-            }
-        });
     }
 
     @NonNull

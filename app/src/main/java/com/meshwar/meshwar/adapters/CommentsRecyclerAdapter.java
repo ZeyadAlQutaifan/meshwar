@@ -3,11 +3,13 @@ package com.meshwar.meshwar.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -38,7 +40,11 @@ public class CommentsRecyclerAdapter  extends FirestoreRecyclerAdapter<Comment, 
                     if (documentSnapshot.exists()){
                         User user = documentSnapshot.toObject(User.class);
                         holder.txtCommenter.setText(user.getFullName());
+                        Glide.with(holder.itemView.getContext())
+                                .load(user.getImageUrl())
+                                .into(holder.imgprofile);
                     }
+
                 }
             }
         });
@@ -60,11 +66,14 @@ public class CommentsRecyclerAdapter  extends FirestoreRecyclerAdapter<Comment, 
         TextView txtCommenter ;
         TextView txtCreationDate ;
 
+        ImageView imgprofile;
+
         public CommentsViewHolder(@NonNull View itemView) {
             super(itemView);
             txtCommentBody = itemView.findViewById(R.id.textViewComment);
             txtCommenter = itemView.findViewById(R.id.textViewUsername);
             txtCreationDate = itemView.findViewById(R.id.textViewCreationDate);
+            imgprofile = itemView.findViewById(R.id.imgUserComment);
         }
     }
 }
