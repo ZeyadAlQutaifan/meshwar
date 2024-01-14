@@ -85,11 +85,9 @@ public class NearbyMapActivity extends FragmentActivity implements OnMapReadyCal
             @Override
             public void onLocationResult(@NonNull LocationResult locationResult) {
                 super.onLocationResult(locationResult);
-                Toast.makeText(NearbyMapActivity.this, "result" + locationResult, Toast.LENGTH_SHORT).show();
 
-                for (Location location : locationResult.getLocations()) {
-                    Toast.makeText(NearbyMapActivity.this, location.getLongitude() + "", Toast.LENGTH_SHORT).show();
-                }
+
+
             }
         };
         fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallback, null);
