@@ -19,6 +19,8 @@ import com.meshwar.meshwar.adapters.AllPlacesRecyclerAdapter;
 import com.meshwar.meshwar.databinding.FragmentAllPlacesBinding;
 import com.meshwar.meshwar.databinding.FragmentMyPostBinding;
 import com.meshwar.meshwar.models.Place;
+import com.meshwar.meshwar.util.FireAuth;
+import com.meshwar.meshwar.util.FireStore;
 
 
 public class MyPostFragment extends Fragment {
@@ -31,7 +33,8 @@ public class MyPostFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate(xml to java) the layout for this fragment
         binding =  FragmentMyPostBinding.inflate(inflater, container, false);
-        Query query = placesRef();
+       Query query =placesRef().whereEqualTo("writerId", FireAuth.authInstance.getCurrentUser().getUid());
+
         FirestoreRecyclerOptions<Place> placeOptions = new FirestoreRecyclerOptions.Builder<Place>()
                 .setQuery(query, Place.class)
                 .build();
