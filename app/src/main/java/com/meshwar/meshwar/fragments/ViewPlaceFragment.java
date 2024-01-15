@@ -43,6 +43,7 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.meshwar.meshwar.R;
 import com.meshwar.meshwar.adapters.CommentsRecyclerAdapter;
+import com.meshwar.meshwar.databinding.FragmentMyPostBinding;
 import com.meshwar.meshwar.databinding.FragmentViewPlaceBinding;
 import com.meshwar.meshwar.models.Comment;
 import com.meshwar.meshwar.models.Place;
@@ -106,8 +107,7 @@ public class ViewPlaceFragment extends Fragment implements OnMapReadyCallback {
         binding.btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
+                FireStore.removePlace(placeId);
             }
         });
         return binding.getRoot();
