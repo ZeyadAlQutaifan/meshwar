@@ -71,6 +71,13 @@ public class FireStore {
                     }
                 });
     }
+    public static Task<Void> removePlace(String placeId) {
+        // Get the reference to the document to be deleted
+       return placesRef().document(placeId).delete();
+
+
+    }
+
 
     public static Query getPlaceComments(String placeId) {
         return commentRef().whereEqualTo("placeId", placeId).orderBy("creationTime");

@@ -34,6 +34,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.firestore.DocumentReference;
@@ -102,6 +103,13 @@ public class ViewPlaceFragment extends Fragment implements OnMapReadyCallback {
         initCommentButton();
         initLikeButton();
         getPlaceData();
+        binding.btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+            }
+        });
         return binding.getRoot();
     }
 
@@ -111,8 +119,10 @@ public class ViewPlaceFragment extends Fragment implements OnMapReadyCallback {
      * city, favorite count, distance, weather, comment count, and checks if the place is marked as a favorite.
      */
     private void getPlaceData() {
-        // Retrieve place data from Firestore
+
+    // Retrieve place data from Firestore
         FireStore.getPLace(placeId).addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 // Check if the Firestore task was successful
@@ -122,6 +132,10 @@ public class ViewPlaceFragment extends Fragment implements OnMapReadyCallback {
 
                     // Convert DocumentSnapshot to Place object
                     Place place = documentSnapshot.toObject(Place.class);
+                    if (place.getWriterId().equals(FireAuth.authInstance.getCurrentUser().getUid())){
+                        binding.btnDelete.setVisibility(View.VISIBLE);
+                        binding.btnUpdate.setVisibility(View.VISIBLE);
+                    }
 
                     // Populate the image slider with place images
                     for (String uri : place.getImages()) {
@@ -422,6 +436,7 @@ public class ViewPlaceFragment extends Fragment implements OnMapReadyCallback {
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 // Get the comment body from the input field
                 String body = etComment.getText().toString();
 

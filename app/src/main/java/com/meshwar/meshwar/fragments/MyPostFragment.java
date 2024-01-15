@@ -1,66 +1,66 @@
 package com.meshwar.meshwar.fragments;
 
+import static com.meshwar.meshwar.util.FireStore.placesRef;
+
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.firestore.Query;
 import com.meshwar.meshwar.R;
+import com.meshwar.meshwar.adapters.AllPlacesRecyclerAdapter;
+import com.meshwar.meshwar.databinding.FragmentAllPlacesBinding;
+import com.meshwar.meshwar.databinding.FragmentMyPostBinding;
+import com.meshwar.meshwar.models.Place;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link MyPostFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class MyPostFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public MyPostFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment MyPostFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static MyPostFragment newInstance(String param1, String param2) {
-        MyPostFragment fragment = new MyPostFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    FragmentMyPostBinding binding ;
+    private AllPlacesRecyclerAdapter allPlacesRecyclerAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_my_post, container, false);
+        // Inflate(xml to java) the layout for this fragment
+        binding =  FragmentMyPostBinding.inflate(inflater, container, false);
+        Query query = placesRef();
+        FirestoreRecyclerOptions<Place> placeOptions = new FirestoreRecyclerOptions.Builder<Place>()
+                .setQuery(query, Place.class)
+                .build();
+        AllPlacesRecyclerAdapter.OnItemClickListener itemClickListener = new AllPlacesRecyclerAdapter.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(String placeId) {
+                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container_view_tag,  ViewPlaceFragment.newInstance(placeId));
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        };
+
+        allPlacesRecyclerAdapter = new AllPlacesRecyclerAdapter(placeOptions, getContext() , itemClickListener);
+        binding.recyclerAllPlaces.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.recyclerAllPlaces.setAdapter(allPlacesRecyclerAdapter);
+
+        return binding.getRoot()  ;
     }
-}
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        allPlacesRecyclerAdapter.startListening();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        allPlacesRecyclerAdapter.stopListening();
+    }}

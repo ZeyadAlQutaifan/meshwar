@@ -122,7 +122,7 @@ public class Place implements Serializable {
         this.city = city;
     }
 
-    public String getWriterId() {
+    public  String getWriterId() {
         return writerId;
     }
 
