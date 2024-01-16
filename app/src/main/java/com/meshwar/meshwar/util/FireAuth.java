@@ -15,4 +15,8 @@ public class FireAuth {
     public static Task<AuthResult> login(String email, String password) {
         return authInstance.signInWithEmailAndPassword(email , password);
     }
+
+    public static  Task<Void>  resetPassword(String email) {
+        return authInstance.sendPasswordResetEmail(email);
+    }
 }

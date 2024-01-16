@@ -19,6 +19,9 @@
         android:theme="@style/Theme.Meshwar"
         tools:targetApi="31">
         <activity
+            android:name=".ResetPasswordActivity"
+            android:exported="false" />
+        <activity
             android:name=".NearbyMapActivity"
             android:exported="false" />
         <activity
@@ -62,9 +65,7 @@
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
-            android:exported="false">
-
-        </activity>
+            android:exported="false"></activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

@@ -154,6 +154,8 @@
     <string name="login">Login</string>
     <string name="enter_password">Enter Password</string>
     <string name="enter_email">Enter Email</string>
+    <string name="enter_email_associated">Enter the email address associated with your account and we ll send you a link to reset your password.</string>
+
     <string name="forgot_password">FORGET PASSWORD ?</string>
     <string name="create_account">CREATE ACCOUNT</string>
     <string name="forget_password">Forgot Password</string>
@@ -176,4 +178,6 @@
     <string name="update_profile_picture">Update Profile Picture</string>
     <string name="save">Save</string>
     <string name="favorite_places">Favorite Places</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="request_password_link">Request Password Link</string>
 </resources>

@@ -1,6 +1,8 @@
 package com.meshwar.meshwar.fragments;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -38,11 +40,14 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.meshwar.meshwar.LoginActivity;
+import com.meshwar.meshwar.MainActivity;
 import com.meshwar.meshwar.R;
 import com.meshwar.meshwar.adapters.CommentsRecyclerAdapter;
 import com.meshwar.meshwar.databinding.FragmentMyPostBinding;
@@ -109,20 +114,38 @@ public class ViewPlaceFragment extends Fragment implements OnMapReadyCallback {
         binding.btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FireStore.removePlace(placeId).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                        fragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+
+                new MaterialAlertDialogBuilder(getActivity())
+                        .setTitle("Delete Post")
+                        .setNegativeButton("No", null)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                ProgressDialog progressDialog = new ProgressDialog(getContext());
+                                progressDialog.setMessage("Deleting...");
+                                progressDialog.setCancelable(false);
+                                progressDialog.show();
+                                FireStore.removePlace(placeId).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void unused) {
+                                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                                        fragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                                        progressDialog.dismiss();
+
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                                        progressDialog.dismiss();
+                                    }
+                                });
+                            }
+                        })
+                        .setCancelable(false)
+                        .show();
 
 
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-
-                    }
-                });
             }
         });
         return binding.getRoot();
@@ -135,7 +158,7 @@ public class ViewPlaceFragment extends Fragment implements OnMapReadyCallback {
      */
     private void getPlaceData() {
 
-    // Retrieve place data from Firestore
+        // Retrieve place data from Firestore
         FireStore.getPLace(placeId).addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
 
             @Override
@@ -147,7 +170,7 @@ public class ViewPlaceFragment extends Fragment implements OnMapReadyCallback {
 
                     // Convert DocumentSnapshot to Place object
                     Place place = documentSnapshot.toObject(Place.class);
-                    if (place.getWriterId().equals(FireAuth.authInstance.getCurrentUser().getUid())){
+                    if (place.getWriterId().equals(FireAuth.authInstance.getCurrentUser().getUid())) {
                         binding.btnDelete.setVisibility(View.VISIBLE);
                         binding.btnUpdate.setVisibility(View.VISIBLE);
                     }
@@ -183,7 +206,7 @@ public class ViewPlaceFragment extends Fragment implements OnMapReadyCallback {
                     binding.btnNavigate.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Uri gmmIntentUri = Uri.parse("google.navigation:q=" + place.getLat()+"," + place.getLng()+"&mode=d");
+                            Uri gmmIntentUri = Uri.parse("google.navigation:q=" + place.getLat() + "," + place.getLng() + "&mode=d");
                             Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
                             mapIntent.setPackage("com.google.android.apps.maps");
                             startActivity(mapIntent);

@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -33,6 +34,7 @@ public class PickImageActivity extends AppCompatActivity {
     private Uri mProfileUri;
 
     private String password;
+    ProgressDialog progressDialog ;
 
     @Override
 
@@ -40,7 +42,7 @@ public class PickImageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityPickImageBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
+        progressDialog = new ProgressDialog(this);
         password = getIntent().getStringExtra("PASSWORD");
     }
 
@@ -89,6 +91,9 @@ public class PickImageActivity extends AppCompatActivity {
             Toast.makeText(this, "Please Select an Image", Toast.LENGTH_SHORT).show();
             return;
         }
+        progressDialog.setMessage("Loading...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
         FireAuth.createUser(User.getInstance().getEmail(), password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
             @Override
             public void onSuccess(AuthResult authResult) {
@@ -99,6 +104,7 @@ public class PickImageActivity extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Exception e) {
                 Toast.makeText(PickImageActivity.this, "Error while creating account", Toast.LENGTH_SHORT).show();
+                progressDialog.dismiss();
             }
         });
     }
@@ -111,6 +117,12 @@ public class PickImageActivity extends AppCompatActivity {
                     public void onSuccess(String s) {
                         User.getInstance().setImageUrl(s);
                         uploadUser();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(PickImageActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
                     }
                 });
     }
@@ -128,6 +140,12 @@ public class PickImageActivity extends AppCompatActivity {
                         startActivity(intent);
                         finish(); // Finish the current activity
 
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(PickImageActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
                     }
                 });
     }
