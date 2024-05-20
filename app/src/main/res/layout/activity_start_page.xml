@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="32dp"
             android:fontFamily="@font/semibold"
-            android:text="مــشـوار"
+            android:text="مسار"
             android:textColor="@color/white"
             android:textSize="60sp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView3"
