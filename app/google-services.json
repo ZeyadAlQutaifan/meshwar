@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "380685253445",
-    "project_id": "meshwar-5a3ab",
-    "storage_bucket": "meshwar-5a3ab.appspot.com"
+    "project_number": "213533274714",
+    "project_id": "masar-14c13",
+    "storage_bucket": "masar-14c13.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:380685253445:android:0a77cd5b724eeff94cdc2c",
+        "mobilesdk_app_id": "1:213533274714:android:ac327fa20e3320f3da5e63",
         "android_client_info": {
           "package_name": "com.meshwar.meshwar"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDTissihID1EvFsoE5vFlv9iymXKuCIohY"
+          "current_key": "AIzaSyD7Gg-yz8hATUZlBmLu3DGM9-RNxzErZfM"
         }
       ],
       "services": {
